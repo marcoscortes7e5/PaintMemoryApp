@@ -7,9 +7,12 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
+import java.lang.Thread.sleep
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        sleep(1000)
+        setTheme(R.style.Theme_PaintMemoryApp)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val listOfDifficultySetting = listOf("Selecciona dificultad","Easy", "Hard", "Hardcore")
@@ -28,14 +31,19 @@ class MainActivity : AppCompatActivity() {
                             AlertDialog.Builder(this).setMessage("Selecciona una dificultad de la lista").show()
                         }
                         listOfDifficultySetting[1] -> {
-                            val mainMenuGameEasyStartIntent = Intent(this, GameEasyActivity::class.java)
+//                            val mainMenuGameEasyStartIntent = Intent(this, GameEasyActivity::class.java)
+                            val mainMenuGameEasyStartIntent = Intent(this, GameActivity::class.java)
                                 .putExtra("difficulty", mainMenuDifficultySpinner.selectedItem.toString())
                             startActivity(mainMenuGameEasyStartIntent)
                         }
                         listOfDifficultySetting[2] -> {
-                            val mainMenuGameHardStartIntent = Intent(this, GameHardActivity::class.java)
+//                            val mainMenuGameHardStartIntent = Intent(this, GameHardActivity::class.java)
+                            val mainMenuGameHardStartIntent = Intent(this, GameActivity::class.java)
                                 .putExtra("difficulty", mainMenuDifficultySpinner.selectedItem.toString())
                             startActivity(mainMenuGameHardStartIntent)
+                        }
+                        listOfDifficultySetting[3] -> {
+                            AlertDialog.Builder(this).setMessage("Este modo está en construcción").show()
                         }
                     }
 
@@ -45,8 +53,8 @@ class MainActivity : AppCompatActivity() {
                     val mainMenuHelpAlertDialog = AlertDialog.Builder(this)
                     mainMenuHelpAlertDialog.setTitle("Como jugar a Paint Memory")
                     mainMenuHelpAlertDialog.setMessage(
-                        "Ejecuta Paint.exe\n" +
-                                "Selecciona una dificultad de la lista\n" +
+                        "Selecciona una dificultad de la lista\n" +
+                                "Ejecuta Paint.exe\n" +
                                 "Encuentra las parejas para ganar")
                     mainMenuHelpAlertDialog.show()
                 }

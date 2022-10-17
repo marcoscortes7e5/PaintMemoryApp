@@ -3,10 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../../../../dades/Marcos/M7-M8/AndroidStudioProjects/PaintMemoryApp/app/src/main/res/drawable/splash_background.xml" value="0.337" />
+        <entry key="../../../../../../../../dades/Marcos/M7-M8/AndroidStudioProjects/PaintMemoryApp/app/src/main/res/layout-land/activity_game.xml" value="0.30158730158730157" />
+        <entry key="../../../../../../../../dades/Marcos/M7-M8/AndroidStudioProjects/PaintMemoryApp/app/src/main/res/layout-land/activity_game_easy.xml" value="0.30158730158730157" />
+        <entry key="../../../../../../../../dades/Marcos/M7-M8/AndroidStudioProjects/PaintMemoryApp/app/src/main/res/layout-land/activity_game_hard.xml" value="0.33" />
+        <entry key="../../../../../../../../dades/Marcos/M7-M8/AndroidStudioProjects/PaintMemoryApp/app/src/main/res/layout-land/activity_main.xml" value="0.30158730158730157" />
+        <entry key="../../../../../../../../dades/Marcos/M7-M8/AndroidStudioProjects/PaintMemoryApp/app/src/main/res/layout-land/activity_points_count.xml" value="0.30158730158730157" />
+        <entry key="../../../../../../../../dades/Marcos/M7-M8/AndroidStudioProjects/PaintMemoryApp/app/src/main/res/layout/activity_game.xml" value="0.35625" />
         <entry key="../../../../../../../../dades/Marcos/M7-M8/AndroidStudioProjects/PaintMemoryApp/app/src/main/res/layout/activity_game_easy.xml" value="0.33" />
         <entry key="../../../../../../../../dades/Marcos/M7-M8/AndroidStudioProjects/PaintMemoryApp/app/src/main/res/layout/activity_game_hard.xml" value="0.35625" />
         <entry key="../../../../../../../../dades/Marcos/M7-M8/AndroidStudioProjects/PaintMemoryApp/app/src/main/res/layout/activity_main.xml" value="0.28825622775800713" />
         <entry key="../../../../../../../../dades/Marcos/M7-M8/AndroidStudioProjects/PaintMemoryApp/app/src/main/res/layout/activity_points_count.xml" value="0.33" />
+        <entry key="../../../../../../../../dades/Marcos/M7-M8/AndroidStudioProjects/PaintMemoryApp/app/src/main/res/mipmap-anydpi-v26/app_icon.xml" value="0.1895" />
+        <entry key="../../../../../../../../dades/Marcos/M7-M8/AndroidStudioProjects/PaintMemoryApp/app/src/main/res/mipmap-anydpi-v26/app_icon_round.xml" value="0.1895" />
+        <entry key="../../../../../../../../dades/Marcos/M7-M8/AndroidStudioProjects/PaintMemoryApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1045" />
+        <entry key="../../../../../../../../dades/Marcos/M7-M8/AndroidStudioProjects/PaintMemoryApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1045" />
       </map>
     </option>
   </component>

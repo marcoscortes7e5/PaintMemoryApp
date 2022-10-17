@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:drawable="@color/white" />
+        <!-- background color -->
+        <item>
+            <bitmap android:gravity="center" android:src="@drawable/main_menu_title" />
+            <!-- centered logo -->
+        </item>
+    </layer-list>
+

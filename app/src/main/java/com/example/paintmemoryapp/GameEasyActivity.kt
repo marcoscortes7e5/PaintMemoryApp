@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.paintmemoryapp.models.Card
+import java.lang.Thread.sleep
 
 class GameEasyActivity : AppCompatActivity() {
     var numberOfMoves = 0
