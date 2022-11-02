@@ -17,11 +17,11 @@ class PointsCountActivity : AppCompatActivity() {
         val pointsCountPlayAgainButton = findViewById<Button>(R.id.pointsCountPlayAgainButton).setOnClickListener {
             when (difficulty){
                 "Easy" -> {
-                    val backToEasyGameIntent = Intent(this, GameEasyActivity::class.java)
+                    val backToEasyGameIntent = Intent(this, GameActivity::class.java).putExtra("difficulty", difficulty)
                     startActivity(backToEasyGameIntent)
                 }
                 "Hard" -> {
-                    val backToHardGameIntent = Intent(this, GameHardActivity::class.java)
+                    val backToHardGameIntent = Intent(this, GameActivity::class.java).putExtra("difficulty", difficulty)
                     startActivity(backToHardGameIntent)
                 }
             }

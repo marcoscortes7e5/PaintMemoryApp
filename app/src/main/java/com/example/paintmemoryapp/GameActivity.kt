@@ -15,12 +15,14 @@ import com.example.paintmemoryapp.models.DeckOfPairs
 
 class GameActivity : AppCompatActivity() {
     var numberOfMoves = 0
+    var cardsNumber = 0
+    var savedArrayOfTags = ArrayList<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
-        val deckOfPairs = DeckOfPairs()
+
         var gameTurnTextView = findViewById<TextView>(R.id.gameTurnTextView)
-        gameTurnTextView.text = ("Turno: 0")
+        gameTurnTextView.text = ("Turno: $numberOfMoves")
         val gameBackToMenuButton =
             findViewById<Button>(R.id.gameBackToMenuButton).setOnClickListener {
                 val gameHardBackToMenuIntent = Intent(this, MainActivity::class.java)
@@ -29,16 +31,19 @@ class GameActivity : AppCompatActivity() {
         val bundle: Bundle? = intent.extras
         val difficultySetting = bundle?.getString("difficulty")
         val listOfPlayedCards = mutableListOf<Card>()
+        val deckOfPairs = DeckOfPairs()
+        val arrayOfSavedPairsEasy = ArrayList(deckOfPairs.listOfDrawablesTagPairsShuffledEasyMode)
         when (difficultySetting){
-            "Easy" -> startGameEasyMode(deckOfPairs.listOfDrawablesTagPairsShuffledEasyMode, listOfPlayedCards, gameTurnTextView)
-            "Hard" -> startGameHardMode(deckOfPairs.listOfDrawablesTagPairsShuffledHardMode, listOfPlayedCards, gameTurnTextView)
+            "Easy" -> startGameEasyMode(deckOfPairs.listOfDrawablesTagPairsShuffledEasyMode, listOfPlayedCards, gameTurnTextView, savedInstanceState)
+            "Hard" -> startGameHardMode(deckOfPairs.listOfDrawablesTagPairsShuffledHardMode, listOfPlayedCards, gameTurnTextView, savedInstanceState)
         }
     }
 
     private fun startGameEasyMode(
         deckOfPairs: List<Pair<Int, String>>,
         listOfPlayedCards: MutableList<Card>,
-        gameTurnTextView: TextView
+        gameTurnTextView: TextView,
+        savedInstanceState: Bundle?,
     ) {
         val rowToDelete = findViewById<TableRow>(R.id.fourthTableRow)
         rowToDelete.forEach {
@@ -53,23 +58,29 @@ class GameActivity : AppCompatActivity() {
             Card(findViewById(R.id.gameCard5)),
             Card(findViewById(R.id.gameCard6))
         )
+
         listOfCardsEasyMode.forEach { card ->
             card.drawable = deckOfPairs[counter].first
             card.tag = deckOfPairs[counter].second
             counter++
         }
+        if (savedInstanceState != null){
+            savedArrayOfTags = savedInstanceState.getStringArrayList("cardTag")!!
+            listOfCardsEasyMode.filter { it.tag in savedArrayOfTags }.forEach { card -> card.imageView.setImageDrawable(getDrawable(card.drawable)) }
+        }
         listOfCardsEasyMode.forEach { card ->
             card.imageView.setOnClickListener {
                 card.imageView.setImageDrawable(getDrawable(card.drawable))
                 listOfPlayedCards.add(card)
-                isListFull(listOfPlayedCards, listOfCardsEasyMode, gameTurnTextView)
+                isListFull(listOfPlayedCards, listOfCardsEasyMode, gameTurnTextView, savedInstanceState)
             }
         }
     }
     private fun startGameHardMode(
         deckOfPairs: List<Pair<Int, String>>,
         listOfPlayedCards: MutableList<Card>,
-        gameTurnTextView: TextView
+        gameTurnTextView: TextView,
+        savedInstanceState: Bundle?,
     ) {
         var counter = 0
         val listOfCardsHardMode = listOf(
@@ -91,36 +102,51 @@ class GameActivity : AppCompatActivity() {
             card.imageView.setOnClickListener {
                 card.imageView.setImageDrawable(getDrawable(card.drawable))
                 listOfPlayedCards.add(card)
-                isListFull(listOfPlayedCards, listOfCardsHardMode, gameTurnTextView)
+                isListFull(
+                    listOfPlayedCards,
+                    listOfCardsHardMode,
+                    gameTurnTextView,
+                    savedInstanceState,
+                )
             }
         }
     }
     private fun isListFull(
         listOfPlayedCards: MutableList<Card>,
         listOfCards: List<Card>,
-        gameTurnTextView: TextView
+        gameTurnTextView: TextView,
+        savedInstanceState: Bundle?,
     ) {
         if (listOfPlayedCards.size == 2) {
             numberOfMoves++
             gameTurnTextView.setText("Turno: $numberOfMoves")
-            areCardsRepeated(listOfPlayedCards, listOfCards)
+            areCardsRepeated(listOfPlayedCards, listOfCards, savedInstanceState)
         }
     }
 
-    private fun areCardsRepeated(listOfPlayedCards: MutableList<Card>, listOfCards: List<Card>) {
+    private fun areCardsRepeated(
+        listOfPlayedCards: MutableList<Card>,
+        listOfCards: List<Card>,
+        savedInstanceState: Bundle?,
+    ) {
         if (listOfPlayedCards[0].imageView.id == listOfPlayedCards[1].imageView.id){
             val sameCardAlertDialog = AlertDialog.Builder(this)
                 .setMessage("No puedes usar la misma carta dos veces").show()
             listOfPlayedCards.forEach { card -> card.imageView.setImageDrawable(getDrawable(card.card_back)) }
             listOfPlayedCards.clear()
         } else {
-            compareCardTags(listOfPlayedCards, listOfCards)
+            compareCardTags(listOfPlayedCards, listOfCards, savedInstanceState)
         }
     }
-    private fun compareCardTags(listOfPlayedCards: MutableList<Card>, listOfCards: List<Card>) {
+    private fun compareCardTags(
+        listOfPlayedCards: MutableList<Card>,
+        listOfCards: List<Card>,
+        savedInstanceState: Bundle?,
+    ) {
         if (listOfPlayedCards[0].tag == listOfPlayedCards[1].tag){
             Toast.makeText(this, "Son iguales", Toast.LENGTH_SHORT).show()
             listOfPlayedCards.forEach { card -> card.imageView.isEnabled = false }
+            savedArrayOfTags.add(listOfPlayedCards[0].tag)
             listOfPlayedCards.clear()
 
         } else {
@@ -145,4 +171,10 @@ class GameActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onSaveInstanceState(savedInstanceState: Bundle) {
+        super.onSaveInstanceState(savedInstanceState)
+        savedInstanceState.putStringArrayList("cardTag", savedArrayOfTags)
+    }
+
 }
