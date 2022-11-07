@@ -26,7 +26,9 @@ class PointsCountActivity : AppCompatActivity() {
                 }
             }
         }
+
         val pointsCountTextView = findViewById<TextView>(R.id.pointsCountTextView).setText("Has tardado $score turnos")
+
         val pointscountBackToMenuButton = findViewById<Button>(R.id.pointsCountBackToMenuButton).setOnClickListener {
             val backToMenuIntent = Intent(this, MainActivity::class.java)
             startActivity(backToMenuIntent)

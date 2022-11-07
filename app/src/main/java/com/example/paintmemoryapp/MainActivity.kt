@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
             )
             mainMenuDifficultySpinner.adapter = adapter
         }
+
             val mainMenuPlayButton =
                 findViewById<Button>(R.id.mainMenuPlayButton).setOnClickListener {
                     when (mainMenuDifficultySpinner.selectedItem){
@@ -31,23 +32,24 @@ class MainActivity : AppCompatActivity() {
                             AlertDialog.Builder(this).setMessage("Selecciona una dificultad de la lista").show()
                         }
                         listOfDifficultySetting[1] -> {
-//                            val mainMenuGameEasyStartIntent = Intent(this, GameEasyActivity::class.java)
                             val mainMenuGameEasyStartIntent = Intent(this, GameActivity::class.java)
                                 .putExtra("difficulty", mainMenuDifficultySpinner.selectedItem.toString())
                             startActivity(mainMenuGameEasyStartIntent)
                         }
                         listOfDifficultySetting[2] -> {
-//                            val mainMenuGameHardStartIntent = Intent(this, GameHardActivity::class.java)
                             val mainMenuGameHardStartIntent = Intent(this, GameActivity::class.java)
                                 .putExtra("difficulty", mainMenuDifficultySpinner.selectedItem.toString())
                             startActivity(mainMenuGameHardStartIntent)
                         }
                         listOfDifficultySetting[3] -> {
-                            AlertDialog.Builder(this).setMessage("Este modo está en construcción").show()
+                            val mainMenuGameHardcoreStartIntent = Intent(this, GameHardcoreActivity::class.java)
+                                .putExtra("difficulty", mainMenuDifficultySpinner.selectedItem.toString())
+                            startActivity(mainMenuGameHardcoreStartIntent)
                         }
                     }
 
                 }
+
             val mainMenuHelpButton =
                 findViewById<Button>(R.id.mainMenuHelpButton).setOnClickListener {
                     val mainMenuHelpAlertDialog = AlertDialog.Builder(this)

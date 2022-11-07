@@ -21,4 +21,16 @@ class DeckOfPairs {
         Pair(R.drawable.spray_front_card,"spray"),
         Pair(R.drawable.spray_front_card,"spray"))
     val listOfDrawablesTagPairsShuffledEasyMode = listOfDrawablesTagPairsEasyMode.shuffled()
+
+    val listOfDrawablesTagPairsHardcoreMode = listOf(Pair(R.drawable.eraser_front_card,"eraser"),
+        Pair(R.drawable.eraser_front_card,"eraser"),
+        Pair(R.drawable.eraser_front_card,"eraser"),
+        Pair(R.drawable.pencil_front_card,"pencil"),
+        Pair(R.drawable.pencil_front_card,"pencil"),
+        Pair(R.drawable.pencil_front_card,"pencil"),
+        Pair(R.drawable.spray_front_card,"spray"),
+        Pair(R.drawable.spray_front_card,"spray"),
+        Pair(R.drawable.spray_front_card,"spray"))
+    val listOfDrawablesTagPairsShuffledHardcoreMode = listOfDrawablesTagPairsHardcoreMode.shuffled()
+
 }

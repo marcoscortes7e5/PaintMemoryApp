@@ -111,6 +111,7 @@ class GameActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun isListFull(
         listOfPlayedCards: MutableList<Card>,
         listOfCards: List<Card>,
@@ -138,6 +139,7 @@ class GameActivity : AppCompatActivity() {
             compareCardTags(listOfPlayedCards, listOfCards, savedInstanceState)
         }
     }
+
     private fun compareCardTags(
         listOfPlayedCards: MutableList<Card>,
         listOfCards: List<Card>,
